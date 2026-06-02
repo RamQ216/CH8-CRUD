@@ -3,6 +3,7 @@ const topicModel=require("../models/topicModel");
 function showHome(req,res){
     //pedimos todos los modelos
     const topics=topicModel.getAlltopics();
+    const links=linkModel.getAlltopics();
     //renderizamos y pasmos los temas
     res.render("index",{topics});
 }
@@ -52,13 +53,13 @@ function deleteTopic(req,res){
 
 };
 
-function voteTopic(req,res){
-    const {id}= req.params;
+function voteTopic(req, res) {
+  const { id } = req.params;
 
-    topicModel.voteTopic(id);
+  const topic = topicModel.voteTopic(id);
 
-    res.redirect("/");
-};
+  res.json({ success: true, topic });
+}
 
 
 module.exports = {
