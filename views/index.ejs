@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temas y Links</title>
+</head>
+<body>
+  <h1>Temas y Links de Aprendizaje</h1>
+
+  <section>
+    <h2>Crear tema</h2>
+
+    <form action="/topics" method="POST">
+      <input
+        type="text"
+        name="title"
+        placeholder="Título del tema"
+        required
+      >
+
+      <textarea
+        name="description"
+        placeholder="Descripción del tema"
+        required
+      ></textarea>
+
+      <button type="submit">Crear tema</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Temas</h2>
+
+    <ul id="topics-list">
+      <% topics.forEach((topic) => { %>
+        <li data-id="<%= topic.id %>">
+          <h3><%= topic.title %></h3>
+
+          <p><%= topic.description %></p>
+
+          <p>
+            Votos:
+            <span class="topic-votes"><%= topic.votes %></span>
+          </p>
+
+          <button
+            type="button"
+            class="vote-topic-button"
+            data-id="<%= topic.id %>"
+          >
+            Votar
+          </button>
+
+          <a href="/topics/<%= topic.id %>/edit">Editar</a>
+
+          <form action="/topics/<%= topic.id %>/delete" method="POST">
+            <button type="submit">Eliminar</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>Crear link</h2>
+
+    <form action="/links" method="POST">
+      <input
+        type="text"
+        name="title"
+        placeholder="Título del link"
+        required
+      >
+
+      <input
+        type="url"
+        name="url"
+        placeholder="URL del link"
+        required
+      >
+
+      <textarea
+        name="description"
+        placeholder="Descripción del link"
+        required
+      ></textarea>
+
+      <button type="submit">Crear link</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Links</h2>
+
+    <ul id="links-list">
+      <% links.forEach((link) => { %>
+        <li data-id="<%= link.id %>">
+          <h3>
+            <a href="<%= link.url %>" target="_blank">
+              <%= link.title %>
+            </a>
+          </h3>
+
+          <p><%= link.description %></p>
+
+          <p>
+            Votos:
+            <span class="link-votes"><%= link.votes %></span>
+          </p>
+
+          <button
+            type="button"
+            class="vote-link-button"
+            data-id="<%= link.id %>"
+          >
+            Votar
+          </button>
+
+          <a href="/links/<%= link.id %>/edit">Editar</a>
+
+          <form action="/links/<%= link.id %>/delete" method="POST">
+            <button type="submit">Eliminar</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
