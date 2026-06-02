@@ -1,30 +1,24 @@
-//importamos la libreria express
-const express= require("express");
-//creamos la app de express
-const app=express();
+const express = require("express");
+const path = require("path");
 
-//PUERTO CONFIGURABLE
-const PORT=process.env.PORT || 5000;
+const topicRoutes = require("./routes/topicRoutes");
+const linkRoutes = require("./routes/linkRoutes");
 
-//creamos la ruta principal
-app.get("/",function (req,res){
-    //enviamos respuesta al servidor
-    res.send("servidor funcionando");
-});
+const app = express();
 
-app.use(function (req,res){
-    res.status(404).send("404-PAGINA NO ENCONTRADA");
-});
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use(function(err,res,req,next){
-    console.error(err);
-    res.status(500).send("500-error interno del servidor");
-});
+app.use(express.static(path.join(__dirname, "public")));
 
+app.use("/", topicRoutes);
+app.use("/", linkRoutes);
 
-//lo ponemos en modo escucha al servidor en el puerto sin parametros
-app.listen(PORT, function (){
-    //mostramos en terminal que arranca el servidor
-    console.log("servidor en funcionamiento en http://localhost:5000")
+const PORT = 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor funcionando en http://localhost:${PORT}`);
 });
