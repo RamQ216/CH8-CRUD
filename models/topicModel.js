@@ -118,6 +118,7 @@ function voteTopic(id) {
 
   // Guardamos los cambios.
   writeDb(db);
+  return topic;
 }
 
 // Exportamos las funciones para poder usarlas en el controller.
