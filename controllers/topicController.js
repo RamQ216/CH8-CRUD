@@ -1,11 +1,12 @@
 const topicModel=require("../models/topicModel");
+const linkModel=require("../models/linkModel");
 
 function showHome(req,res){
     //pedimos todos los modelos
     const topics=topicModel.getAllTopics();
-    const links=linkModel.getAlltopics();
+    const links=linkModel.getAllLinks();
     //renderizamos y pasmos los temas
-    res.render("index",{topics});
+    res.render("index",{topics, links});
 }
 
 
