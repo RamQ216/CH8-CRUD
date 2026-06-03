@@ -2,11 +2,12 @@ const topicModel=require("../models/topicModel");
 
 function showHome(req,res){
     //pedimos todos los modelos
-    const topics=topicModel.getAlltopics();
+    const topics=topicModel.getAllTopics();
     const links=linkModel.getAlltopics();
     //renderizamos y pasmos los temas
     res.render("index",{topics});
 }
+
 
 function createTopic(req,res){
     //del json sacamos title y descripcion
@@ -31,7 +32,7 @@ function showEditForm(req, res){
         return res.redirect("/");
     }
     //renderizamos y pasamos el tema
-    res.render("edit",{ topic });
+    res.render("editTopic", { topic });
 };
 
 function updateTopic(req,res){
