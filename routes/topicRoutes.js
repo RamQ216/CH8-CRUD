@@ -39,17 +39,13 @@ router.post("/topics/:id/vote", topicController.voteTopic);
 // Crea un enlace dentro de un tema.
 router.post("/topics/:topicId/links", linkController.createLink);
 
-// Muestra el formulario para editar un enlace.
-router.get("/topics/:topicId/links/:linkId/edit", linkController.showEditLinkForm);
+router.get("/topics/:topicId/links/:id/edit", linkController.showEditLinkForm);
 
-// Actualiza un enlace existente.
-router.post("/topics/:topicId/links/:linkId/update", linkController.updateLink);
+router.post("/topics/:topicId/links/:id/update", linkController.updateLink);
 
-// Elimina un enlace existente.
-router.post("/topics/:topicId/links/:linkId/delete", linkController.deleteLink);
+router.post("/topics/:topicId/links/:id/delete", linkController.deleteLink);
 
-// Suma un voto a un enlace.
-router.post("/topics/:topicId/links/:linkId/vote", linkController.voteLink);
+router.post("/topics/:topicId/links/:id/vote", linkController.voteLink);
 
 // Exportamos el router para usarlo en app.js.
 module.exports = router;
