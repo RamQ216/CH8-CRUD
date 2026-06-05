@@ -10,9 +10,7 @@ const topicController = require("../controllers/topicController");
 // Importamos el controlador de enlaces.
 const linkController = require("../controllers/linkController");
 
-/*
-  RUTAS DE TEMAS
-*/
+
 
 // Muestra la pagina principal con todos los temas.
 router.get("/", topicController.showHome);
@@ -32,20 +30,5 @@ router.post("/topics/:id/delete", topicController.deleteTopic);
 // Suma un voto a un tema.
 router.post("/topics/:id/vote", topicController.voteTopic);
 
-/*
-  RUTAS DE ENLACES
-*/
 
-// Crea un enlace dentro de un tema.
-router.post("/topics/:topicId/links", linkController.createLink);
-
-router.get("/topics/:topicId/links/:id/edit", linkController.showEditLinkForm);
-
-router.post("/topics/:topicId/links/:id/update", linkController.updateLink);
-
-router.post("/topics/:topicId/links/:id/delete", linkController.deleteLink);
-
-router.post("/topics/:topicId/links/:id/vote", linkController.voteLink);
-
-// Exportamos el router para usarlo en app.js.
 module.exports = router;
